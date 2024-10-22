@@ -8,7 +8,7 @@
 
     <div style="margin-top: 100px">
         @if ($user->following->isNotEmpty())
-            <div class="row-justify-content-center">
+            <div class="row justify-content-center">
                 <div class="col-4">
                     <h3 class="text-muted text-center">
                         Following

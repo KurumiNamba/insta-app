@@ -81,6 +81,14 @@ class HomeController extends Controller
         # array_slice(array, starting index, limit);
     }
 
+    private function getAllSuggestedUsers() {
+        $auth_id = Auth::id();
+        return User::where('id', '!=', $auth_id)
+        ->whereDoesntHave('followers', function($query) use ($auth_id){
+            $query->where('follower_id', $auth_id);
+        });
+    }
+
     /**
      * Method to search user
      */
@@ -102,4 +110,9 @@ class HomeController extends Controller
         ->with('search', $request->search);
     }
 
+    public function suggest() {
+        $suggested_users = $this->getAllSuggestedUsers()->paginate(10);
+        return view('users.profile.suggest')
+        ->with('suggested_users', $suggested_users);
+     }
 }

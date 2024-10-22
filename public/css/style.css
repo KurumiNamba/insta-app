@@ -1,3 +1,10 @@
+/* Nav bar */
+.nav-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
 /* Icon In the Navbar Section */
 .icon-sm {
     font-size: 2rem;

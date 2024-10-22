@@ -21,7 +21,12 @@
                         </a>
                     </div>
                     <div class="col ps-0 text-truncate">
-                        <a href="{{route('profile.show', $user->id)}}" class="text-decoration-none text-dark fw-bold">{{$user->name}}</a>
+                        <a href="{{route('profile.show', $user->id)}}" class="text-decoration-none text-dark fw-bold">
+                            {{$user->name}}
+                            @if ($user->isFollowing())
+                                <span class="text-muted small ms-3">Follows You</span>
+                            @endif
+                        </a>
                         <p class="text-muted small mb-0">{{$user->email}}</p>
                     </div>
                     <div class="col-auto">

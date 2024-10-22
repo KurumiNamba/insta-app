@@ -87,6 +87,13 @@
                                         <i class="fa-solid fa-heart text-danger"></i>
                                     </button>
                                 </form>
+                               
+                                    <span>
+                                        @foreach ($liked_users as $liked_user)
+                                            {{$liked_user->name}}
+                                        @endforeach
+                                    </span>
+                                
                             @else
                                 <form action="{{route('like.store', $post->id)}}" method="post">
                                     @csrf

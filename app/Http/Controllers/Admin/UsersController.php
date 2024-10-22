@@ -35,7 +35,7 @@ class UsersController extends Controller
     public function activate($user_id) {
         $this->user->onlyTrashed()->findOrFail($user_id)->restore();
         /**
-         * The onlyTrashed --> retrieces soft delete records only
+         * The onlyTrashed --> retrieves soft delete records only
          * restore() -->This will un-delete a soft deleted model/record. THis will set the "deleted_at" column to null
          */
         return redirect()->back();

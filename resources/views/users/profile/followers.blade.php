@@ -28,17 +28,19 @@
                             <a href="{{route('profile.show', $follower->follower->id)}}" class="text-decoration-none text-dark fw-bold">{{$follower->follower->name}}</a>
                         </div>
                         <div class="col-auto text-end">
-                            @if ($follower->follower->isFollowed())
-                                <form action="{{route('follow.destroy', $follower->follower->id)}}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="border-0 bg-transparent p-0 text-secondary btn-sm">Following</button>
-                                </form>
-                            @else
-                                <form action="{{route('follow.store', $follower->follower->id)}}" method="post">
-                                    @csrf
-                                    <button type="submit" class="border-0 bg-transparent p-0 text-primary btn-sm">Follow</button>
-                                </form>
+                            @if ($follower->follower->id !== Auth::id())    
+                                @if ($follower->follower->isFollowed())
+                                    <form action="{{route('follow.destroy', $follower->follower->id)}}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="border-0 bg-transparent p-0 text-secondary btn-sm">Following</button>
+                                    </form>
+                                @else
+                                    <form action="{{route('follow.store', $follower->follower->id)}}" method="post">
+                                        @csrf
+                                        <button type="submit" class="border-0 bg-transparent p-0 text-primary btn-sm">Follow</button>
+                                    </form>
+                                @endif
                             @endif
                         </div>
                     </div>
