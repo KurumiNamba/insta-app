@@ -96,6 +96,11 @@
                                         <i class="fa-solid fa-circle-user"></i> Profile
                                     </a>
 
+                                    {{-- Password --}}
+                                    <a href="{{route('profile.password', Auth::user()->id)}}" class="dropdown-item">
+                                        <i class="fa-solid fa-key"></i> Update Password
+                                    </a>
+
                                     {{-- Logout --}}
                                     
                                         <a class="dropdown-item" href="{{ route('logout') }}"

@@ -4,6 +4,11 @@
 
 @section('content')
 
+@if (session('status'))
+    <div class="alert alert-success">
+        {{ session('status') }}
+    </div>
+@endif
     <div class="row gx-5">
         <div class="col-8">
             @forelse ($home_posts as $post)

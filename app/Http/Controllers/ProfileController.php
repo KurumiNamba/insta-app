@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+
 
 
 class ProfileController extends Controller
@@ -65,5 +67,43 @@ class ProfileController extends Controller
         ->with('user', $user);
      }
 
+     public function password() {
+        $user=$this->user->findOrFail(Auth::user()->id);
+        return view('users.profile.password')
+        ->with('user', $user);
+     }
+
+     public function passwordValidate(Request $request) {
+        $request->validate([
+            'current_pass' => 'required'
+        ]);
+    
+        $isValid = Hash::check($request->current_pass, Auth::user()->password);
+    
+        if ($isValid) {
+            return redirect()->route('profile.password')->with('valid', true);
+        } else {
+            return redirect()->route('profile.password')->with('error', 'Wrong Password.');
+        }
+    }
+    
+    public function updatePassword(Request $request) {
+        $request->validate([
+            'new_pass' => 'required|min:6',
+            'new_pass_check' => 'required|min:6'
+        ]);
+
+        if ($request->new_pass === $request->new_pass_check) {
+            $user = Auth::user(); 
+            $user->password = bcrypt($request->new_pass);
+            $user->save(); 
+            
+            return redirect()->route('index')->with('status', 'Password Updated');
+        } else {
+            return redirect()->route('profile.password')->with('confirm_error', 'Input the same password. Please try it again.');
+        }
+    
+    }
+    
 
 }

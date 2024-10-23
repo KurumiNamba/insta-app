@@ -57,6 +57,12 @@ Route::group(['middleware'=>'auth'], function(){
 
     Route::patch('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
 
+    Route::get('/profile/password', [ProfileController::class, 'password'])->name('profile.password');
+
+    Route::post('/profile/password/validate', [ProfileController::class, 'passwordValidate'])->name('profile.passwordValidate');
+
+    Route::post('/profile/update-password', [ProfileController::class, 'updatePassword'])->name('profile.updatePassword');
+
     Route::get('/follow/{user_id}/followers', [ProfileController::class, 'followers'])->name('follow.followers');
 
     Route::get('/follow/{user_id}/following', [ProfileController::class, 'following'])->name('profile.following');
