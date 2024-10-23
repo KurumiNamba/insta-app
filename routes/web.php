@@ -31,6 +31,8 @@ Route::group(['middleware'=>'auth'], function(){
     Route::get('/people', [HomeController::class, 'search'])->name('search');
 
     Route::get('/suggest', [HomeController::class, 'suggest'])->name('suggest');
+
+    Route::post('/theme', [HomeController::class, 'changeTheme'])->name('changeTheme');
     
 
     Route::get('/post/create', [PostController::class, 'create'])->name('post.create');

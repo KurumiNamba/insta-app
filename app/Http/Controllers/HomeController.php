@@ -115,4 +115,16 @@ class HomeController extends Controller
         return view('users.profile.suggest')
         ->with('suggested_users', $suggested_users);
      }
+
+     public function changeTheme(Request $request) {
+        $request->validate([
+            'theme' => 'required|string|in:normal,dark',
+        ]);
+    
+        $user = Auth::user();
+        $user->theme = $request->theme;
+        $user->save();
+    
+        return redirect()->back();
+     }
 }
