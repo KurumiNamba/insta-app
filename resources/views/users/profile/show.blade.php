@@ -18,7 +18,12 @@
                 @endforeach
             </div>
         @else
-            <h3 class="text-muted text-center">No posts yet</h3>
+            @if (Auth::user()->theme == 'normal')
+                <h3 class="text-muted text-center">No posts yet</h3>
+            @else
+            {{-- dark mode --}}
+                <h3 class=" text-center dark-mode-text">No posts yet</h3>
+            @endif
         @endif
     </div>
 

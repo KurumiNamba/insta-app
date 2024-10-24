@@ -11,4 +11,5 @@ class Like extends Model
 
     public $timestamps = false;
     //we should add this valiable if we delete timestamps inside migration file
+
 }

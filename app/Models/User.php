@@ -85,4 +85,15 @@ class User extends Authenticatable
       public function isFollowing(){
         return $this->following()->where('following_id', Auth::user()->id)->exists();
       }
+
+      public function followerNum() {
+        $num = $this->followers()->count();
+        if ($num==1) {
+          return $num. ' follower';
+        } elseif($num==0) {
+          return 'No Follower yet';
+        } else {
+          return $num. ' followers';
+        }
+      }
 }

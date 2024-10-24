@@ -115,8 +115,10 @@
                     <div class="col ps-0 text-truncate">
                         @if (Auth::user()->theme == 'normal')
                             <a href="{{ route('profile.show', $user->id) }}" class="text-decoration-none text-dark fw-bold">{{ $user->name }}</a>
+                            <p class="small">{{$user->followerNum()}}</p>
                         @else
                         <a href="{{ route('profile.show', $user->id) }}" class="text-decoration-none text-white fw-bold">{{ $user->name }}</a>
+                        <p class="small dark-mode-text">{{$user->followerNum()}}</p>
                         @endif
                     </div>
                     <div class="col-auto">
