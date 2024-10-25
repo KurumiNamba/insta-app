@@ -39,9 +39,11 @@ class HomeController extends Controller
         // return view('users.home') // homepage
         // ->with('all_posts', $all_posts);
         $home_posts = $this->getHomePosts();
+        $liked_users = $this->post->likedByUsers()->get();
         $suggested_users = $this->getSuggestedUsers();
         return view('users.home')
         ->with('home_posts', $home_posts)
+        ->with('liked_users', $liked_users)
         ->with('suggested_users', $suggested_users);
     }
 
@@ -93,7 +95,7 @@ class HomeController extends Controller
      * Method to search user
      */
     public function search(Request $request){
-        $users = $this->user->where('name', 'like', '%'. $request->search. '%')->get();
+        $users = $this->user->where('name', 'like', '%'. $request->search. '%')->paginate(8);
         /**
          * Users table
          * 

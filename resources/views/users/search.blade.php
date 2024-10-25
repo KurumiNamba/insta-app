@@ -50,6 +50,10 @@
             
         @endforelse
     </div>
+    <div class="d-flex justify-content-center">
+        {{$users->appends(['search' => $search])->links()}}
+    </div>
+    
 </div>
 @else
     {{-- dark mode --}}
@@ -99,6 +103,10 @@
                 
             @endforelse
         </div>
+        <div class="d-flex justify-content-center">
+            {{$users->appends(['search' => $search])->links()}}
+        </div>
+        
     </div>
 @endif
 

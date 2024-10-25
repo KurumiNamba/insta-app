@@ -96,4 +96,8 @@ class User extends Authenticatable
           return $num. ' followers';
         }
       }
+
+      public function likedPosts() {
+        return $this->belongsToMany(Post::class, 'likes', 'user_id', 'post_id', );
+      }
 }

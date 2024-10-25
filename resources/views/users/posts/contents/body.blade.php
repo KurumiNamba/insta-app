@@ -2,7 +2,7 @@
     {{-- Clickable image --}}
 <div class="container p-0">
     <a href="{{route('post.show', $post->id)}}">
-        <img src="{{$post->image}}" alt="{{$post->id}}" class="w-100">
+        <img src="{{$post->image}}" alt="{{$post->id}}" class="w-100 post">
     </a>
 </div>
 <div class="card-body">
@@ -27,7 +27,33 @@
             @endif
         </div>
         <div class="col-auto px-0">
-            <span>{{$post->likes->count()}}</span>
+            <span class="fw-bold me-3">{{$post->likes->count()}}</span>
+            {{-- いいねしている人を2人とotherを表示させ、otherで一覧を見れるようにしたい --}}
+           @foreach ($post->likedByUsers->take(2) as $user)
+                @if ($post->likes->count() == 2)
+                    <span>
+                        <a href="{{ route('profile.show', $user->id) }}" class="text-decoration-none text-dark fw-bold">{{ $user->name }}</a>{{ !$loop->last ? ' and' : '' }}
+                    </span>
+                @elseif($post->likes->count() > 2)
+                <span>
+                    <a href="{{ route('profile.show', $user->id) }}" class="text-decoration-none text-dark fw-bold">{{ $user->name }}</a>{{ !$loop->last ? ',' : '' }}
+                </span>
+                @endif
+                @endforeach
+            
+                @if ($post->likes->count() > 2)
+                <span> and 
+                    <button type="button" class=" btn btn-link p-0 text-decoration-none fw-bold text-dark" data-bs-toggle="modal" data-bs-target="#all-liked-users-{{$post->id}}">
+                        Others
+                      </button> liked this post.</span>
+                @elseif($post->likes->count() == 2)
+                    <span> liked this post.</span>
+                @elseif($post->likes->count() == 1)
+                    <span> <a href="{{ route('profile.show', $user->id) }}" class="text-decoration-none text-dark fw-bold">{{ $user->name }}</a> liked this post.</span>
+                @endif
+
+                @include('users.posts.contents.modals.allLikedUsers')
+            
         </div>
         <div class="col text-end">
             {{-- Lists of categories of specific post --}}
@@ -62,7 +88,7 @@
     {{-- Clickable image --}}
 <div class="container p-0">
     <a href="{{route('post.show', $post->id)}}">
-        <img src="{{$post->image}}" alt="{{$post->id}}" class="w-100">
+        <img src="{{$post->image}}" alt="{{$post->id}}" class="w-100 post">
     </a>
 </div>
 <div class="card-body bg-dark">
@@ -87,7 +113,37 @@
             @endif
         </div>
         <div class="col-auto px-0">
-            <span class="text-white">{{$post->likes->count()}}</span>
+            <span class="text-white fw-bold me-3">{{$post->likes->count()}}</span>
+            {{-- いいねしている人を2人とotherを表示させ、otherで一覧を見れるようにしたい --}}
+
+            
+                @foreach ($post->likedByUsers->take(2) as $user)
+                @if ($post->likes->count() == 2)
+                    <span class="text-white">
+                        <a href="{{ route('profile.show', $user->id) }}" class="text-decoration-none text-white fw-bold" class="text-white">{{ $user->name }}</a>{{ !$loop->last ? ' and' : '' }}
+                    </span>
+                @elseif($post->likes->count() > 2)
+                <span class="text-white">
+                    <a href="{{ route('profile.show', $user->id) }}" class="text-decoration-none text-white fw-bold" class="text-white">{{ $user->name }}</a>{{ !$loop->last ? ',' : '' }}
+                </span>
+                @endif
+                @endforeach
+            
+                @if ($post->likes->count() > 2)
+                    <span class="text-white"> and 
+                        <button type="button" class=" btn btn-link p-0 text-decoration-none fw-bold text-white" data-bs-toggle="modal" data-bs-target="#all-liked-users-{{$post->id}}">
+                            Others
+                          </button> liked this post.</span>
+                @elseif($post->likes->count() == 2)
+                    <span class="text-white"> liked this post.</span>
+                @elseif($post->likes->count() == 1)
+                    <span class="text-white"> <a href="{{ route('profile.show', $user->id) }}" class="text-decoration-none text-white fw-bold" class="text-white">{{ $user->name }}</a> liked this post.</span>
+                @endif
+
+                @include('users.posts.contents.modals.allLikedUsers')
+            
+
+
         </div>
         <div class="col text-end">
             {{-- Lists of categories of specific post --}}

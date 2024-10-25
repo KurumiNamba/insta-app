@@ -96,3 +96,13 @@
     border-color: #e0e0e0;
     outline: none;
 }
+
+/* animations for posts */
+
+.post {
+    transition: transform 0.3s; /* アニメーションのトランジション */
+}
+
+.post:hover {
+    transform: scale(1.025);
+}
