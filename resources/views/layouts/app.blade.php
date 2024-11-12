@@ -21,6 +21,9 @@
 
     {{-- Fontawesome CDN Link --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    {{-- chart.js --}}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 @guest
 <body>
@@ -262,6 +265,9 @@
                                 {{-- Admin Controls --}}
                                 <a href="{{route('admin.users')}}" class="dropdown-item">
                                     <i class="fa-solid fa-user-gear"></i> Admin
+                                </a>
+                                <a href="{{route('reports')}}" class="dropdown-item">
+                                    <i class="fa-solid fa-chart-line"></i> Report
                                 </a>
                                 <hr class="dropdown-devider">
                                 @endcan

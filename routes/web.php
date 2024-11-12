@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\PostsController;
 use App\Http\Controllers\Admin\CategoriesController;
+use App\Http\Controllers\Admin\ReportsController;
 
 /**
  * Controller for regular users
@@ -112,7 +113,17 @@ Route::group(['middleware'=>'auth'], function(){
         Route::patch('/categories/{category_id}/update', [CategoriesController::class, 'update'])->name('categories.update');
 
         Route::delete('/categories/{category_id}/destroy', [CategoriesController::class, 'destroy'])->name('categories.destroy');
+
      });
+
+     /**
+         * Reports routes
+         */
+        Route::get('/reports', [ReportsController::class, 'index'])->name('reports');
+
+        Route::get('/reports/posts', [ReportsController::class, 'posts'])->name('reports.posts');
+
+        Route::get('/reports/users', [ReportsController::class, 'users'])->name('reports.users');
     }
 
 );

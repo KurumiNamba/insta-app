@@ -33,7 +33,7 @@ class ProfileController extends Controller
         $request->validate([
             'avatar' => 'nullable|mimes:jpeg,jpg,png,gif|max:1048',
             'name' => 'required|min:1|max:255',
-            'email' => 'required|email|max:255',
+            'email' => 'required|email',
             'introduction' => 'nullable|min:0|max:255'
         ]);
 

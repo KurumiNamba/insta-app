@@ -221,4 +221,5 @@ class PostController extends Controller
         $this->post->findOrFail($post_id)->forceDelete();
         return redirect()->route('index');
     }
+
 }
